@@ -7,10 +7,11 @@ type Name struct {
 	LastName   string `json:"last_name"`
 }
 
-func (m *Name) GetBase() *Base {
+func (m Name) GetBase() *Base {
 	return &m.Base
 }
 
-func (m *Name) SetBase(b *Base) {
+func (m Name) SetBase(b *Base) *Name {
 	m.Base = *b
+	return &m
 }

@@ -12,7 +12,7 @@ func (m Address) GetBase() *Base {
 	return &m.Base
 }
 
-func (m Address) SetBase(b *Base) Address {
+func (m Address) SetBase(b *Base) *Address {
 	m.Base = *b
-	return m
+	return &m
 }

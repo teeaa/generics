@@ -36,6 +36,7 @@ require (
 
 require (
 	github.com/go-fuego/fuego v0.14.0
+	github.com/google/uuid v1.6.0
 	github.com/ilyakaznacheev/cleanenv v1.5.0
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect

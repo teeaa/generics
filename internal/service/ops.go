@@ -16,6 +16,16 @@ func NewOps[T models.DataType](s *Service) Op[T] {
 	return Op[T]{s: s}
 }
 
+func (t Op[T]) Create(ctx context.Context, item models.Item[T]) (*T, error) {
+	err := database.NewOps[T](t.s.db).Create(ctx, item)
+	if err != nil {
+		slog.Error("Create", slog.Any("err", err))
+		return nil, internal.ErrServerError
+	}
+
+	return t.Get(ctx, item)
+}
+
 func (t Op[T]) Get(ctx context.Context, item models.Item[T]) (*T, error) {
 	res, err := database.NewOps[T](t.s.db).Get(ctx, item)
 	if err != nil {

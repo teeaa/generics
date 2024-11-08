@@ -7,10 +7,11 @@ type Dob struct {
 	Dob time.Time `json:"dob"`
 }
 
-func (m *Dob) GetBase() *Base {
+func (m Dob) GetBase() *Base {
 	return &m.Base
 }
 
-func (m *Dob) SetBase(b *Base) {
+func (m Dob) SetBase(b *Base) *Dob {
 	m.Base = *b
+	return &m
 }
