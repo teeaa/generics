@@ -16,6 +16,7 @@ func (a *Api) setRoutes() {
 	setItemRoutes[models.Name](tx, "name")
 }
 
+// func (a *Api) setItemRoutes[T models.DataType](route *fuego.Server, itemType string) {
 func setItemRoutes[T models.DataType](route *fuego.Server, itemType string) {
 	fuego.Post(route, fmt.Sprintf("/%s", itemType), Create[T])
 }
