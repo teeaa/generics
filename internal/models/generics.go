@@ -2,7 +2,9 @@ package models
 
 type DataType interface {
 	Address | Dob | Name
+}
 
+type Item[T DataType] interface {
 	GetBase() *Base
-	// SetBase(*Base) *T
+	SetBase(b *Base) *T
 }

@@ -18,7 +18,6 @@ func (a *Api) setRoutes() {
 }
 
 func setItemRoutes[T models.DataType](route *fuego.Server, srv *service.Service, itemType string) {
-	fuego.Post(route, fmt.Sprintf("/%s", itemType), Create[T])
-	// fuego.Post(route, fmt.Sprintf("/%s", itemType), NewOps[T](srv, itemType).Create)
-	// fuego.Get(route, fmt.Sprintf("/%s", itemType), NewOps[T](srv, itemType).Get)
+	fuego.Post(route, fmt.Sprintf("/%s", itemType), NewOps[T](srv).Create)
+	fuego.Get(route, fmt.Sprintf("/%s", itemType), NewOps[T](srv).Get)
 }
