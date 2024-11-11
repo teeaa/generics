@@ -12,12 +12,12 @@ func (a *Api) setRoutes() {
 	v1 := fuego.Group(a.api, "/v1")
 	tx := fuego.Group(v1, "/tx/{txid}")
 
-	setItemRoutes[models.Address](tx, a.service, "address")
-	setItemRoutes[models.Dob](tx, a.service, "dob")
-	setItemRoutes[models.Name](tx, a.service, "name")
+	setItemRoutes[models.Address, models.AddressRequest, models.AddressResponse](tx, a.service, "address")
+	setItemRoutes[models.Dob, models.DobRequest, models.DobResponse](tx, a.service, "dob")
+	setItemRoutes[models.Name, models.NameRequest, models.NameResponse](tx, a.service, "name")
 }
 
-func setItemRoutes[T models.DataType](route *fuego.Server, srv *service.Service, itemType string) {
-	fuego.Post(route, fmt.Sprintf("/%s", itemType), NewOps[T](srv).Create)
-	fuego.Get(route, fmt.Sprintf("/%s", itemType), NewOps[T](srv).Get)
+func setItemRoutes[T models.DataType, Req models.RequestType[T], Res models.ResponseType[T]](route *fuego.Server, srv *service.Service, itemType string) {
+	fuego.Post(route, fmt.Sprintf("/%s", itemType), NewOps[T, Req, Res](srv).Create)
+	fuego.Get(route, fmt.Sprintf("/%s", itemType), NewOps[T, Req, Res](srv).Get)
 }
