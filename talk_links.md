@@ -2,6 +2,8 @@
 
 ### First iteration
 
+`git checout first`
+
 - [Generics DataType](./internal/models/generics.go)
 - [Create route](./internal/api/routes.go)
 - [API Create()](./internal/api/ops.go)
